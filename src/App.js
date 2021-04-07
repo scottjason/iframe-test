@@ -13,7 +13,8 @@ function App() {
     const payload = { ...formState };
     payload.eventName = "submit";
     const iframeWin = document.getElementById("test-iframe").contentWindow;
-    iframeWin.postMessage(JSON.stringify(payload), "*");
+    const targetOrigin = document.getElementById("test-iframe").src;
+    iframeWin.postMessage(JSON.stringify(payload), targetOrigin);
   };
 
   const onInputChange = (e) => {
@@ -37,7 +38,8 @@ function App() {
       password: document.getElementById("parent-password").value,
     };
     const iframeWin = document.getElementById("test-iframe").contentWindow;
-    iframeWin.postMessage(JSON.stringify(payload), "*");
+    const targetOrigin = document.getElementById("test-iframe").src;
+    iframeWin.postMessage(JSON.stringify(payload), targetOrigin);
   };
 
   const iframeClass = isIframeVisible ? "visible" : "hidden";
